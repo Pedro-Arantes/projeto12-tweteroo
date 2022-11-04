@@ -3,6 +3,7 @@ import cors from 'cors';
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 const tweets = [
     {
 		username: "igorNovais",
@@ -58,10 +59,46 @@ const tweets = [
     
 
 ]
+const users = [];
+let avata;
 
 app.get('/tweets', (req, res) => {
     
     res.send(tweets);
+  });
+
+app.post('/sign-up', (req, res) => {
+	const {username,avatar} = req.body;
+
+	if (!username||!avatar) {
+		res.status(400).send("Todos os Campos são obrigatórios!");
+		return;
+	}
+	const user = {
+		username: username,
+		avatar: avatar
+	}
+	avata = avatar
+	users.push(user)
+    
+    res.status(201).send("OK");
+  });
+
+  app.post('/tweets', (req, res) => {
+	const {username,tweet} = req.body;
+
+	if (!username||!tweet) {
+		res.status(400).send("Todos os Campos são obrigatórios!");
+		return;
+	}
+	const obj = {
+		username: username,
+		avatar: avata,
+  		tweet: tweet
+	}
+	tweets.push(obj)
+    
+    res.status(201).send("OK");
   });
 
   app.listen(5000, () => {
