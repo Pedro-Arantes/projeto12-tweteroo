@@ -6,59 +6,61 @@ app.use(cors());
 app.use(express.json());
 const tweets = [
     {
-		username: "igorNovais",
+		username: "Puro Osso",
 			avatar: "https://super.abril.com.br/wp-content/uploads/2020/09/04-09_gato_SITE.jpg?quality=70&strip=info",
 		  tweet: "Ossada!!"
 	},
     
     {
-		username: "esdrinhas",
+		username: "Bowser",
 			avatar: "https://super.abril.com.br/wp-content/uploads/2020/09/04-09_gato_SITE.jpg?quality=70&strip=info",
 		  tweet: "Tenho uma Masmorra"
 	},
     {
-		username: "joaoJesus666",
+		username: "Mario",
 			avatar: "https://super.abril.com.br/wp-content/uploads/2020/09/04-09_gato_SITE.jpg?quality=70&strip=info",
 		  tweet: "Tá de Sacatelha"
 	},
     {
-		username: "lusca",
+		username: "Aiden Pierce",
 			avatar: "https://super.abril.com.br/wp-content/uploads/2020/09/04-09_gato_SITE.jpg?quality=70&strip=info",
 		  tweet: "Consigo rodar varios servers sem desligar o pc"
 	},
     {
-		username: "callistoMain",
+		username: "Bruce Lee",
 			avatar: "https://super.abril.com.br/wp-content/uploads/2020/09/04-09_gato_SITE.jpg?quality=70&strip=info",
 		  tweet: "Aii, da uma pegada!"
 	},
     {
-		username: "mrGustavo",
+		username: "Ash",
 			avatar: "https://super.abril.com.br/wp-content/uploads/2020/09/04-09_gato_SITE.jpg?quality=70&strip=info",
 		  tweet: "nodemon->sem demonio"
 	},
     {
-		username: "pedrola",
+		username: "Faker",
 			avatar: "https://super.abril.com.br/wp-content/uploads/2020/09/04-09_gato_SITE.jpg?quality=70&strip=info",
 		  tweet: "vamo joga um lolzin"
 	},
     {
-		username: "erick",
+		username: "Cristovão Colombo",
 			avatar: "https://super.abril.com.br/wp-content/uploads/2020/09/04-09_gato_SITE.jpg?quality=70&strip=info",
 		  tweet: "vamo jogar Catanzin"
 	},
     {
-		username: "caioba",
+		username: "Happy Feet",
 			avatar: "https://super.abril.com.br/wp-content/uploads/2020/09/04-09_gato_SITE.jpg?quality=70&strip=info",
 		  tweet: "vou passar as ferias na antartica"
 	},
     {
-		username: "dani",
+		username: "Peach",
 			avatar: "https://super.abril.com.br/wp-content/uploads/2020/09/04-09_gato_SITE.jpg?quality=70&strip=info",
 		  tweet: "oii gentee"
 	},
     
 
 ]
+
+
 const users = [];
 let avata;
 
@@ -78,7 +80,7 @@ app.post('/sign-up', (req, res) => {
 		username: username,
 		avatar: avatar
 	}
-	avata = avatar
+	
 	users.push(user)
     
     res.status(201).send("OK");
@@ -91,9 +93,10 @@ app.post('/sign-up', (req, res) => {
 		res.status(400).send("Todos os Campos são obrigatórios!");
 		return;
 	}
+	const avata = users.find((x)=>x.username === username)
 	const obj = {
 		username: username,
-		avatar: avata,
+		avatar: avata.avatar,
   		tweet: tweet
 	}
 	tweets.push(obj)
